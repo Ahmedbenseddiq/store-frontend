@@ -9,9 +9,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
     return (
         <Link to={`/products/${product.id}`} className="group cursor-pointer block">
             <div className="aspect-[3/4] bg-gray-100 w-full overflow-hidden relative">
-                {product.image_url ? (
+                {product.image ? (
                     <img
-                        src={product.image_url}
+                        src={product.image}
                         alt={product.name}
                         className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                     />
@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     </div>
                 )}
                 {/* Overlay or Tag */}
-                {product.stock <= 0 && (
+                {(product.stock ?? 0) <= 0 && (
                     <div className="absolute top-2 left-2 bg-white/90 px-2 py-1 text-xs font-bold uppercase tracking-wider text-red-600">
                         Sold Out
                     </div>
@@ -40,7 +40,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     )}
                 </div>
                 <p className="text-sm font-medium text-gray-900 ml-4">
-                    ${Number(product.price).toFixed(2)}
+                    ${Number(product.unit_price ?? product.price ?? 0).toFixed(2)}
                 </p>
             </div>
         </Link>

@@ -19,7 +19,11 @@ const Login = () => {
         try {
             const response = await authService.login({ email, password });
             login(response.token, response.user);
-            navigate('/');
+            if (response.user.role === 'admin') {
+                navigate('/admin');
+            } else {
+                navigate('/');
+            }
         } catch (err: any) {
             setError(err.response?.data?.message || 'Failed to login');
         } finally {

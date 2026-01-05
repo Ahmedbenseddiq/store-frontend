@@ -17,10 +17,10 @@ const Home = () => {
                 console.error("Failed to fetch products", err);
                 // Fallback to mock data for demo if API fails
                 setProducts([
-                    { id: 1, name: 'Essential Tee', description: 'desc', price: 35, stock: 10, category_id: 1, created_at: '', category: { id: 1, name: 'Tops', created_at: '' } },
-                    { id: 2, name: 'Slim Jeans', description: 'desc', price: 89, stock: 5, category_id: 2, created_at: '', category: { id: 2, name: 'Bottoms', created_at: '' } },
-                    { id: 3, name: 'Oversized Hoodie', description: 'desc', price: 120, stock: 0, category_id: 1, created_at: '', category: { id: 1, name: 'Tops', created_at: '' } },
-                ]);
+                    { id: 1, name: 'Essential Tee', description: 'desc', unit_price: 35, price: 35, cost: 10, stock: 10, category_id: 1, created_at: '', is_active: true, category: { id: 1, name: 'Tops', description: '', created_at: '' } },
+                    { id: 2, name: 'Slim Jeans', description: 'desc', unit_price: 89, price: 89, cost: 30, stock: 5, category_id: 2, created_at: '', is_active: true, category: { id: 2, name: 'Bottoms', description: '', created_at: '' } },
+                    { id: 3, name: 'Oversized Hoodie', description: 'desc', unit_price: 120, price: 120, cost: 40, stock: 0, category_id: 1, created_at: '', is_active: true, category: { id: 1, name: 'Tops', description: '', created_at: '' } },
+                ] as any);
                 // setError('Failed to load products');
             } finally {
                 setLoading(false);

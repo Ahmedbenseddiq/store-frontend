@@ -23,10 +23,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const initAuth = async () => {
             if (token) {
                 try {
-                    // Ideally we fetch the user profile here to validate token
-                    // For now assuming if token exists we are good until 401
-                    // But let's try to fetch user if possible or just use stored user if we stored it
-                    // Simple version: just keep token. Better: fetch user.
                     const userData = await authService.getProfile().catch(() => null);
                     if (userData) {
                         setUser(userData);
@@ -42,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         };
 
         initAuth();
-    }, [token]);
+    }, []);
 
     const login = (newToken: string, newUser: User) => {
         localStorage.setItem('token', newToken);
