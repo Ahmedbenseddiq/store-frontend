@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { productService } from '../services/product.service';
+import { categoryService } from '../services/category.service';
 import type { Category } from '../types';
 
 const Categories = () => {
@@ -7,7 +7,7 @@ const Categories = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        productService.getCategories()
+        categoryService.getAll()
             .then(data => setCategories(data))
             .catch(err => {
                 console.error(err);

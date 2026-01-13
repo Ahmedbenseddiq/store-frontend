@@ -24,6 +24,13 @@ const AdminSidebar = () => {
                     >
                         Dashboard
                     </Link>
+
+                    <Link
+                        to="/admin/categories"
+                        className={`${isActive('/admin/categories')} group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
+                    >
+                        Categories
+                    </Link>
                     <Link
                         to="/admin/products"
                         className={`${isActive('/admin/products')} group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
@@ -31,11 +38,18 @@ const AdminSidebar = () => {
                         Products
                     </Link>
                     <Link
-                        to="/admin/categories"
-                        className={`${isActive('/admin/categories')} group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
+                        to="/admin/stock-logs"
+                        className={`${isActive('/admin/stock-logs')} group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
                     >
-                        Categories
+                        Stock Logs
                     </Link>
+                    <Link
+                        to="/admin/orders"
+                        className={`${isActive('/admin/orders')} group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
+                    >
+                        Orders
+                    </Link>
+
                 </nav>
                 <div className="p-4 border-t border-gray-700">
                     <button

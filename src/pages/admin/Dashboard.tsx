@@ -92,11 +92,11 @@ const Dashboard = () => {
                     <h2 className="text-xl font-bold text-gray-900">Quick Actions</h2>
                 </div>
                 <div className="flex space-x-4">
-                    <Link to="/admin/products" className="bg-white border border-gray-300 shadow-sm px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        Manage Products
-                    </Link>
                     <Link to="/admin/categories" className="bg-white border border-gray-300 shadow-sm px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
                         Manage Categories
+                    </Link>
+                    <Link to="/admin/products" className="bg-white border border-gray-300 shadow-sm px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        Manage Products
                     </Link>
                 </div>
             </div>

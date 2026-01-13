@@ -19,7 +19,7 @@ const ProductForm = () => {
         description: '',
         unit_price: '',
         cost: '',
-        stock: '',
+       
         category_id: '',
         is_active: true
     });
@@ -39,7 +39,6 @@ const ProductForm = () => {
                         description: product.description || '', // Safe fallback
                         unit_price: (product.unit_price ?? product.price ?? 0).toString(), // Fallback to price if unit_price missing
                         cost: (product.cost ?? 0).toString(),
-                        stock: (product.stock ?? 0).toString(),
                         category_id: product.category_id?.toString() || '',
                         is_active: !!product.is_active // Cast to boolean
                     });
@@ -75,7 +74,6 @@ const ProductForm = () => {
             data.append('description', formData.description);
             data.append('unit_price', formData.unit_price);
             data.append('cost', formData.cost);
-            data.append('stock', formData.stock);
             data.append('category_id', formData.category_id);
             data.append('is_active', formData.is_active ? '1' : '0');
 
@@ -150,17 +148,7 @@ const ProductForm = () => {
                         </select>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Stock</label>
-                        <input
-                            type="number"
-                            required
-                            min="0"
-                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-black focus:border-black sm:text-sm"
-                            value={formData.stock}
-                            onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                        />
-                    </div>
+                    
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Unit Price ($)</label>

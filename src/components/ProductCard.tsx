@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { useState } from 'react';
 import type { Product } from '../types';
 
 interface ProductCardProps {
@@ -6,6 +8,18 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+    const { addToCart } = useCart();
+    const [added, setAdded] = useState(false);
+    const isOutOfStock = (product.inventory?.quantity ?? 0) <= 0;
+
+    const handleAddToCart = (e: React.MouseEvent) => {
+        e.preventDefault(); // Prevent navigation
+        if (isOutOfStock) return;
+        addToCart(product);
+        setAdded(true);
+        setTimeout(() => setAdded(false), 1500);
+    };
+
     return (
         <Link to={`/products/${product.id}`} className="group cursor-pointer block">
             <div className="aspect-[3/4] bg-gray-100 w-full overflow-hidden relative">
@@ -23,11 +37,29 @@ const ProductCard = ({ product }: ProductCardProps) => {
                         </svg>
                     </div>
                 )}
+
                 {/* Overlay or Tag */}
-                {(product.stock ?? 0) <= 0 && (
+                {isOutOfStock ? (
                     <div className="absolute top-2 left-2 bg-white/90 px-2 py-1 text-xs font-bold uppercase tracking-wider text-red-600">
                         Sold Out
                     </div>
+                ) : (
+                    <button
+                        onClick={handleAddToCart}
+                        className={`absolute bottom-4 right-4 p-3 rounded-full shadow-lg transition-transform duration-200 transform hover:scale-110 focus:outline-none z-10 ${added ? 'bg-green-600 text-white' : 'bg-white text-black hover:bg-black hover:text-white'
+                            } opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all`}
+                        title="Add to Cart"
+                    >
+                        {added ? (
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                        ) : (
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                        )}
+                    </button>
                 )}
             </div>
             <div className="mt-4 flex justify-between items-start">
